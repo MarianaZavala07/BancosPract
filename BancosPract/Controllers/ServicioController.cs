@@ -38,6 +38,8 @@ public class ServicioController : Controller
      [HttpGet]
       public IActionResult ServicioAdd()
     {
+      
+
         return View();
     }
      [HttpPost]
@@ -54,8 +56,12 @@ public class ServicioController : Controller
         servicio.Tipo=model.Tipo;
         servicio.NoCuentaS=model.NoCuentaS;
         servicio.Costo=model.Costo;
+
+        
         this._context.Servicios.Add(servicio);
         this._context.SaveChanges();
+
+        
  
         return RedirectToAction("ServicioList","Servicio");
     } 

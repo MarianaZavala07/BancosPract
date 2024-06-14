@@ -27,6 +27,10 @@
         <label asp-for="Costo" class="form-label">Costo</label>
         <input type="text" class="form-control" asp-for="Costo" placeholder="Escriba el Costo del Servicio" />
     </div>
+     <select class="form-select mb-3" asp-for="BancosId" asp-items="@Model.ListBancos">
+        <option> Seleccionar Servicio</option>
+     </select>
+    
 
 
     <button type="submit" class="btn btn-primary">Guardar</button>

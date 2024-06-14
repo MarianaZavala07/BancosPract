@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BancosPract.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240605161240_CrearTablaBanco")]
-    partial class CrearTablaBanco
+    [Migration("20240611024005_CrearTablasCompletas")]
+    partial class CrearTablasCompletas
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,50 @@ namespace BancosPract.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Banco");
+                });
+
+            modelBuilder.Entity("BancosPract.Entities.Servicio", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BancosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Costo")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("NoCuentaS")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NombreS")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BancosId");
+
+                    b.ToTable("Servicios");
+                });
+
+            modelBuilder.Entity("BancosPract.Entities.Servicio", b =>
+                {
+                    b.HasOne("BancosPract.Entities.Bancos", "Bancos")
+                        .WithMany("Servicios")
+                        .HasForeignKey("BancosId");
+
+                    b.Navigation("Bancos");
+                });
+
+            modelBuilder.Entity("BancosPract.Entities.Bancos", b =>
+                {
+                    b.Navigation("Servicios");
                 });
 #pragma warning restore 612, 618
         }

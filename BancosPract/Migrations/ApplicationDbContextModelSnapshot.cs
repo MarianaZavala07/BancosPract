@@ -53,6 +53,9 @@ namespace BancosPract.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("BancosId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("Costo")
                         .HasColumnType("decimal(18,2)");
 
@@ -69,7 +72,23 @@ namespace BancosPract.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BancosId");
+
                     b.ToTable("Servicios");
+                });
+
+            modelBuilder.Entity("BancosPract.Entities.Servicio", b =>
+                {
+                    b.HasOne("BancosPract.Entities.Bancos", "Bancos")
+                        .WithMany("Servicios")
+                        .HasForeignKey("BancosId");
+
+                    b.Navigation("Bancos");
+                });
+
+            modelBuilder.Entity("BancosPract.Entities.Bancos", b =>
+                {
+                    b.Navigation("Servicios");
                 });
 #pragma warning restore 612, 618
         }

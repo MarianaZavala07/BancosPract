@@ -8,6 +8,8 @@ public class BancosModel
          public int NoCuenta { get; set; }
          public string Address { get; set;}
          public decimal Cash{ get; set; }
+         
+         
 
 
 
