@@ -12,8 +12,9 @@ public class ServiciosModel
          public decimal Costo { get; set; }
          public Guid? BancosId { get; set; }
          public BancosModel? bancosModel{ get; set; }
-         public string BancosName { get; set; }
-         public List<SelectListItem> ListBancos { get; set; }
+         //public string BancosName { get; set; }
+         
+        // public List<SelectListItem> ListBancos { get; set; }
 
         
 
